@@ -105,7 +105,12 @@ export default function Hero() {
       </div>
 
       <div className="hero-grid">
-        <p className="hero-lede">{t.hero.lede}</p>
+        <div className="hero-left">
+          <p className="hero-lede">{t.hero.lede}</p>
+          <a className="btn btn-ghost hero-github" href={GH_PROFILE} target="_blank" rel="noreferrer" data-cursor>
+            GitHub ↗
+          </a>
+        </div>
 
         <div className="hero-meta-row">
           <div className="hero-stat">
@@ -132,15 +137,6 @@ export default function Hero() {
             </span>
             <span className="hero-stat-label mono">{t.hero.stats.joined}</span>
           </div>
-          <a
-            className="btn btn-ghost hero-github"
-            href={GH_PROFILE}
-            target="_blank"
-            rel="noreferrer"
-            data-cursor
-          >
-            GitHub ↗
-          </a>
         </div>
       </div>
 
