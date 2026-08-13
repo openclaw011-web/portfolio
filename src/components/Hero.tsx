@@ -47,9 +47,6 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 3.25, defaults: { ease: 'power4.out' } })
 
-      const kicker = el.querySelector('.hero-kicker')
-      if (kicker) tl.fromTo(kicker, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.8 }, 0)
-
       const nameLines = Array.from(el.querySelectorAll('.hero-name-line'))
       if (nameLines.length) {
         const chars: HTMLSpanElement[] = []
@@ -81,14 +78,6 @@ export default function Hero() {
 
   return (
     <section ref={ref} className="hero section container" id="top">
-      <div className="hero-top mono">
-        <span className="hero-kicker">{t.hero.kicker}</span>
-        <span className="hero-loc mono">
-          <span className="dot-live" />
-          {t.hero.location}
-        </span>
-      </div>
-
       <h1 className="hero-name display" aria-label={t.hero.name}>
         {nameParts.map((part, i) => (
           <span key={i} className={'hero-name-line' + (i % 2 ? ' hero-name-line--italic' : '')}>

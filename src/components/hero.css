@@ -10,22 +10,6 @@
   overflow: hidden;
 }
 
-.hero-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: var(--ink-muted);
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-}
-
-.hero-loc {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
 .hero-name {
   font-size: var(--text-hero);
   margin-block: var(--space-4) var(--space-3);
