@@ -3,7 +3,7 @@
      baked into the canvas pixels (no CSS mask — masks force an expensive
      per-frame compositing pass on large layers) */
   position: absolute;
-  top: clamp(140px, 20vh, 250px);
+  top: clamp(80px, 12vh, 190px);
   right: 0;
   width: min(94vw, 1520px);
   height: clamp(520px, 62vh, 660px);
