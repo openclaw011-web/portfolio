@@ -21,7 +21,7 @@ export default function OrbitField() {
     const ACCENT = '255, 92, 53'
 
     // orbital particles (elliptical paths so the field fills the wide box)
-    const N = 44
+    const N = 56
     const parts = Array.from({ length: N }, (_, i) => {
       const accent = i % 9 === 0
       return {
@@ -42,9 +42,10 @@ export default function OrbitField() {
     let time = 0
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
-      canvas.width = Math.max(2, Math.round(Math.min(canvas.clientWidth, 820) * dpr))
-      canvas.height = Math.max(2, Math.round(Math.min(canvas.clientHeight, 620) * dpr))
+      // large background canvas: cap the resolution and dpr for smooth 60fps
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25)
+      canvas.width = Math.max(2, Math.round(Math.min(canvas.clientWidth, 1280) * dpr))
+      canvas.height = Math.max(2, Math.round(Math.min(canvas.clientHeight, 760) * dpr))
     }
     resize()
 
@@ -52,10 +53,10 @@ export default function OrbitField() {
       const W = canvas.width
       const H = canvas.height
       ctx.clearRect(0, 0, W, H)
-      const cx = W / 2
-      const cy = H * 0.44
-      const R = Math.min(W, H) * 0.5 // max orbit radius in px
-      const linkDist = R * 0.55
+      const cx = W * 0.62
+      const cy = H * 0.5
+      const R = Math.min(W, H) * 0.54 // max orbit radius in px
+      const linkDist = R * 0.5
 
       // node positions
       const pos: { x: number; y: number; accent: boolean }[] = []
