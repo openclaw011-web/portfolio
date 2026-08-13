@@ -9,7 +9,7 @@ import './about.css'
 export default function About() {
   const { t } = useI18n()
   const gridRef = useReveal<HTMLDivElement>({ y: 40 })
-  const focusRef = useReveal<HTMLDivElement>({ y: 40, delay: 0.1 })
+  const photoRef = useReveal<HTMLDivElement>({ y: 40, delay: 0.1 })
   const counterRef = useRef<HTMLDivElement>(null)
 
   // animate the stat counters when visible
@@ -35,7 +35,9 @@ export default function About() {
     return () => ctx.revert()
   }, [])
 
-  const focusItems = t.about.focus.items
+  const onPhotoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.closest('.about-photo')?.setAttribute('data-failed', 'true')
+  }
 
   return (
     <section className="section container" id="about">
@@ -49,18 +51,24 @@ export default function About() {
           </a>
         </div>
 
-        <div className="about-side">
-          <div className="about-focus" ref={focusRef}>
-            <h3 className="about-focus-title mono">{t.about.focus.title}</h3>
-            <ul className="about-focus-list">
-              {focusItems.map((item) => (
-                <li key={item} className="about-focus-item">
-                  <span className="about-focus-dot" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="about-side" ref={photoRef}>
+          <figure className="about-photo" data-cursor>
+            <div className="about-photo-frame">
+              <img
+                src="portrait.jpg"
+                alt={t.about.portraitAlt ?? t.about.portrait}
+                loading="lazy"
+                decoding="async"
+                onError={onPhotoError}
+              />
+              <span className="about-photo-fallback display" aria-hidden="true">
+                PA
+              </span>
+            </div>
+            <figcaption className="about-photo-caption mono">
+              {t.about.portrait}
+            </figcaption>
+          </figure>
         </div>
       </div>
 

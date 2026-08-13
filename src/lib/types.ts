@@ -53,6 +53,8 @@ export interface Content {
     body: string
     cta: string
     focus: { title: string; items: string[] }
+    portrait?: string
+    portraitAlt?: string
   }
   work: {
     label: string

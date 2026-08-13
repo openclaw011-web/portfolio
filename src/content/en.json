@@ -35,6 +35,8 @@
     "lead": "I'm a computer science student and self-driven AI builder from Kathmandu. Since joining GitHub in June 2025 I've shipped 23 public repositories — spanning AI platforms, developer tools and study aids.",
     "body": "My work sits at the intersection of machine intelligence and human experience: rapid AI experimentation with Gemini, instant manga colorization, interactive search-algorithm visualizers, and a phishing detector trained to keep people safe online. Alongside the builds, I keep a rigorous academic practice in data structures, operating systems, databases and the theory of computation.",
     "cta": "View GitHub",
+    "portrait": "Prabesh Amgain",
+    "portraitAlt": "Portrait of Prabesh Amgain",
     "focus": {
       "title": "Current focus",
       "items": ["Rapid AI experimentation", "ML workflow simulation", "Study tools for students", "Clean, fluid interfaces"]
