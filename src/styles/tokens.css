@@ -1,0 +1,94 @@
+/* ─────────────────────────────────────────────
+   Design tokens — Prabesh Amgain portfolio
+   ───────────────────────────────────────────── */
+
+:root {
+  /* type */
+  --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* fluid type scale */
+  --text-xs: clamp(0.68rem, 0.6rem + 0.35vw, 0.78rem);
+  --text-sm: clamp(0.8rem, 0.72rem + 0.4vw, 0.92rem);
+  --text-md: clamp(0.95rem, 0.88rem + 0.5vw, 1.1rem);
+  --text-lg: clamp(1.15rem, 1rem + 0.8vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
+  --text-2xl: clamp(2rem, 1.4rem + 3vw, 3.4rem);
+  --text-3xl: clamp(2.6rem, 1.6rem + 5vw, 5.2rem);
+  --text-hero: clamp(3.2rem, 6.5vw, 8.6rem);
+
+  /* rhythm */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6.5rem;
+  --space-7: 10rem;
+  --space-8: 16rem;
+
+  /* geometry */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-full: 999px;
+
+  /* motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --dur-fast: 320ms;
+  --dur-med: 640ms;
+  --dur-slow: 1200ms;
+
+  /* layout */
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --nav-h: 4.5rem;
+  --max-w: 1440px;
+
+  /* z-index */
+  --z-cursor: 1000;
+  --z-preloader: 900;
+  --z-nav: 800;
+  --z-grain: 700;
+}
+
+/* dark (default) */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0c0b09;
+  --bg-soft: #13110e;
+  --bg-lift: #1a1713;
+  --ink: #f2ede4;
+  --ink-muted: #9a9386;
+  --ink-faint: #6b665c;
+  --accent: #ff5c35;
+  --accent-soft: rgba(255, 92, 53, 0.14);
+  --line: rgba(242, 237, 228, 0.14);
+  --line-strong: rgba(242, 237, 228, 0.32);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+/* light */
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f2ede4;
+  --bg-soft: #ebe4d7;
+  --bg-lift: #e3dbc9;
+  --ink: #17140f;
+  --ink-muted: #5f594d;
+  --ink-faint: #8b8475;
+  --accent: #d9481f;
+  --accent-soft: rgba(217, 72, 31, 0.12);
+  --line: rgba(23, 20, 15, 0.16);
+  --line-strong: rgba(23, 20, 15, 0.38);
+  --shadow: 0 24px 80px rgba(23, 20, 15, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-med: 1ms;
+    --dur-slow: 1ms;
+  }
+}

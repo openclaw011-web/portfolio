@@ -1,0 +1,28 @@
+.marquee {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-4);
+  border-block: 1px solid var(--line);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-5);
+  will-change: transform;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-5);
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  color: var(--ink);
+}
+
+.marquee-star {
+  color: var(--accent);
+  font-size: 0.6em;
+}

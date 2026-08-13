@@ -1,0 +1,162 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: calc(var(--nav-h) + var(--space-5));
+  padding-bottom: var(--space-4);
+  overflow: hidden;
+}
+
+.hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.hero-loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.hero-name {
+  font-size: var(--text-hero);
+  margin-block: var(--space-4) var(--space-3);
+  line-height: 0.92;
+}
+
+.hero-name-line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.04em;
+}
+
+.hero-name-line--italic {
+  font-style: italic;
+  font-weight: 300;
+  padding-left: clamp(0.5rem, 4vw, 3rem);
+  color: var(--ink);
+}
+
+.hero-role-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: var(--space-5);
+  height: 2em;
+  overflow: hidden;
+}
+
+.hero-role {
+  font-size: var(--text-lg);
+  color: var(--accent);
+  display: inline-block;
+}
+
+.hero-role-index {
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: end;
+}
+
+.hero-lede {
+  max-width: 42ch;
+  font-size: var(--text-lg);
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+
+.hero-meta-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3) var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.hero-stat-num {
+  font-size: var(--text-xl);
+  color: var(--ink);
+}
+
+.hero-stat-num--text {
+  font-size: var(--text-xl);
+}
+
+.hero-stat-label {
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.hero-github {
+  align-self: start;
+}
+
+.hero-cue {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink-faint);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+.hero-cue-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, var(--line-strong), transparent);
+  animation: cue-drift 2.2s var(--ease-in-out-expo) infinite;
+  transform-origin: top;
+}
+
+@keyframes cue-drift {
+  0% { transform: scaleY(0); opacity: 0; }
+  40% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1) translateY(20px); opacity: 0; }
+}
+
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+  .hero-meta-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .hero-meta-row {
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+  }
+  .hero-stat--wide {
+    min-width: 12ch;
+  }
+}

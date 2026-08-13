@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Prabesh Amgain — AI Builder & CS Student",
+    "description": "Minimalist portfolio of Prabesh Amgain — AI experiments, intelligent tools and web craft."
+  },
+  "nav": {
+    "work": "Selected Work",
+    "about": "Profile",
+    "capabilities": "Capabilities",
+    "journey": "Journey",
+    "contact": "Contact",
+    "available": "Open to internships",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "kicker": "Portfolio — 2026",
+    "greeting": "Namaste, I'm",
+    "name": "Prabesh Amgain",
+    "roles": ["AI Engineer", "CS Student", "Web Builder", "Problem Solver"],
+    "lede": "I build intelligent, human-centered software — from Gemini-powered platforms to tools that make learning and reading faster, clearer and more beautiful.",
+    "scroll": "Scroll to explore",
+    "location": "Kathmandu, Nepal",
+    "stats": {
+      "repos": "public repos",
+      "followers": "followers",
+      "following": "following",
+      "joined": "on GitHub since"
+    }
+  },
+  "marquee": ["AI × Design × Code", "React", "TypeScript", "Gemini", "GSAP", "Python", "Machine Learning"],
+  "about": {
+    "label": "01 — Profile",
+    "heading": "A curious mind building with intelligence.",
+    "lead": "I'm a computer science student and self-driven AI builder from Kathmandu. Since joining GitHub in June 2025 I've shipped 23 public repositories — spanning AI platforms, developer tools and study aids.",
+    "body": "My work sits at the intersection of machine intelligence and human experience: rapid AI experimentation with Gemini, instant manga colorization, interactive search-algorithm visualizers, and a phishing detector trained to keep people safe online. Alongside the builds, I keep a rigorous academic practice in data structures, operating systems, databases and the theory of computation.",
+    "cta": "View GitHub",
+    "focus": {
+      "title": "Current focus",
+      "items": ["Rapid AI experimentation", "ML workflow simulation", "Study tools for students", "Clean, fluid interfaces"]
+    }
+  },
+  "work": {
+    "label": "02 — Selected Work",
+    "heading": "Projects with intent.",
+    "sub": "Six builds pulled live from GitHub — each an experiment in what intelligent software can feel like.",
+    "view": "View repository",
+    "visit": "Visit live",
+    "detail": "Details",
+    "close": "Close",
+    "live": "live",
+    "archived": "in development",
+    "projects": [
+      {
+        "id": "labloop",
+        "name": "LabLoop",
+        "repo": "LabLoop",
+        "tag": "AI Platform",
+        "year": "2026",
+        "description": "A platform for rapid AI experimentation and machine-learning workflow simulation, powered by Gemini AI.",
+        "tech": ["TypeScript", "Gemini AI", "React"],
+        "link": ""
+      },
+      {
+        "id": "manga-colorizer",
+        "name": "Manga Colorizer",
+        "repo": "Manga-colorizer",
+        "tag": "Generative AI",
+        "year": "2026",
+        "description": "Colorize any manga page in an instant. A generative pipeline that turns monochrome panels into living art.",
+        "tech": ["TypeScript", "GenAI", "Vercel"],
+        "link": "https://manga-colorizer-three.vercel.app"
+      },
+      {
+        "id": "sprint-coach",
+        "name": "Past Paper Sprint Coach",
+        "repo": "Past-Paper-Sprint-Coach",
+        "tag": "EdTech",
+        "year": "2025",
+        "description": "An AI-powered study companion that helps students understand and practice past exam papers through intelligent question analysis.",
+        "tech": ["TypeScript", "AI", "React"],
+        "link": ""
+      },
+      {
+        "id": "visualizer",
+        "name": "Search Algorithm Visualizer",
+        "repo": "Uninformed-and-informed-search-algorithm-visualizer",
+        "tag": "Interactive",
+        "year": "2025",
+        "description": "Watch uninformed and informed search algorithms explore state spaces in real time — learning by seeing.",
+        "tech": ["JavaScript", "Canvas", "Algorithms"],
+        "link": "https://visualizer-gules.vercel.app"
+      },
+      {
+        "id": "py-compiler",
+        "name": "Personal Python Compiler",
+        "repo": "Personal-python-compiler",
+        "tag": "DevTool",
+        "year": "2025",
+        "description": "Run Python directly in the browser — a lightweight personal playground for quick experiments anywhere.",
+        "tech": ["Python", "WebAssembly"],
+        "link": "https://personal-python-compiler.vercel.app"
+      },
+      {
+        "id": "phishing",
+        "name": "Phishing Detection",
+        "repo": "phishing-detection",
+        "tag": "Security",
+        "year": "2025",
+        "description": "A machine-learning detector that flags malicious URLs before they reach you — safety engineered in code.",
+        "tech": ["Python", "ML", "Security"],
+        "link": ""
+      }
+    ]
+  },
+  "skills": {
+    "label": "03 — Capabilities",
+    "heading": "A working toolkit.",
+    "sub": "Gathered from 23 repositories of shipped code.",
+    "groups": [
+      {
+        "title": "AI & Machine Learning",
+        "items": ["Gemini AI", "Prompt Engineering", "ML Workflow Design", "Image Colorization", "Phishing Detection"]
+      },
+      {
+        "title": "Web Engineering",
+        "items": ["React", "TypeScript", "Vite", "GSAP Motion", "Responsive Design", "Vercel Deploys"]
+      },
+      {
+        "title": "Computer Science",
+        "items": ["Data Structures", "Algorithms", "Operating Systems", "Databases", "Networks", "Theory of Computation"]
+      },
+      {
+        "title": "Languages & Tools",
+        "items": ["Python", "TypeScript", "JavaScript", "C", "C++", "Jupyter", "Git & GitHub"]
+      }
+    ]
+  },
+  "journey": {
+    "label": "04 — Journey",
+    "heading": "Short path, fast pace.",
+    "sub": "From first commit to AI platforms — in eight months.",
+    "items": [
+      {
+        "period": "Jun 2025",
+        "title": "Joined GitHub",
+        "detail": "First commit. The beginning of a public practice in code.",
+        "tag": "start"
+      },
+      {
+        "period": "Nov 2025",
+        "title": "First web experiments",
+        "detail": "Shipped videohost-pro, a browser Python compiler and an interactive search-algorithm visualizer.",
+        "tag": "web"
+      },
+      {
+        "period": "Dec 2025",
+        "title": "AI-powered study tools",
+        "detail": "Built Past Paper Sprint Coach — intelligent practice from real exam papers.",
+        "tag": "ai"
+      },
+      {
+        "period": "Dec 2025",
+        "title": "Academic depth",
+        "detail": "Systems, data and theory: DBMS, OS, networks, DSA and theory of computation labs.",
+        "tag": "theory"
+      },
+      {
+        "period": "Jan 2026",
+        "title": "Generative craft",
+        "detail": "Manga Colorizer — instant AI colorization of manga pages.",
+        "tag": "ai"
+      },
+      {
+        "period": "Jan 2026",
+        "title": "LabLoop",
+        "detail": "A Gemini-powered platform for rapid AI experimentation and ML workflow simulation.",
+        "tag": "ai"
+      }
+    ]
+  },
+  "contact": {
+    "label": "05 — Contact",
+    "heading": "Let's build something intelligent.",
+    "sub": "Open to internships, collaborations and interesting problems. Say hello — I usually reply within a day.",
+    "email": "prabeshamgain@gmail.com",
+    "cta": "Start a conversation",
+    "github": "GitHub",
+    "location": "Kathmandu, Nepal",
+    "localTime": "Local time"
+  },
+  "footer": {
+    "note": "Designed & built with intention. No templates, no slop — just motion, type and care.",
+    "rights": "© 2026 Prabesh Amgain. All rights reserved.",
+    "backToTop": "Back to top",
+    "theme": "Toggle theme",
+    "lang": "Switch language"
+  }
+}

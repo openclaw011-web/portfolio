@@ -1,0 +1,64 @@
+.contact {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-6);
+  min-height: 80svh;
+  display: flex;
+  align-items: center;
+}
+
+.contact-label {
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.contact-heading {
+  font-size: var(--text-3xl);
+  max-width: 14ch;
+  margin-bottom: var(--space-4);
+}
+
+.contact-word {
+  display: inline-block;
+}
+
+.contact-word--italic {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+.contact-sub {
+  max-width: 46ch;
+  color: var(--ink-muted);
+  font-size: var(--text-lg);
+  line-height: 1.55;
+  margin-bottom: var(--space-4);
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.contact-cta {
+  font-size: var(--text-lg);
+  padding: 1.15rem 2.2rem;
+}
+
+.contact-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.contact-clock {
+  color: var(--ink);
+}
