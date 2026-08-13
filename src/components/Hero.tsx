@@ -3,6 +3,7 @@ import { gsap, prefersReducedMotion, splitChars } from '../lib/motion'
 import { useI18n } from '../lib/i18n'
 import { fetchGitHubData, GH_PROFILE } from '../lib/github'
 import type { UserMeta } from '../lib/types'
+import BlackHole from './BlackHole'
 import './hero.css'
 
 const ROTATE_MS = 2600
@@ -78,6 +79,7 @@ export default function Hero() {
 
   return (
     <section ref={ref} className="hero section container" id="top">
+      <BlackHole />
       <h1 className="hero-name display" aria-label={t.hero.name}>
         {nameParts.map((part, i) => (
           <span key={i} className={'hero-name-line' + (i % 2 ? ' hero-name-line--italic' : '')}>

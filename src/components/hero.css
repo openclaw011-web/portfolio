@@ -10,6 +10,13 @@
   overflow: hidden;
 }
 
+.hero-name,
+.hero-role-wrap,
+.hero-grid {
+  position: relative;
+  z-index: 1;
+}
+
 .hero-name {
   font-size: var(--text-hero);
   margin-block: var(--space-4) var(--space-4);

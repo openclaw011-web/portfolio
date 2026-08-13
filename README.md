@@ -7,6 +7,7 @@ A minimalist, motion-graphics portfolio for **Prabesh Amgain**, built with React
 ## ✨ Highlights
 
 - **Fluid motion** — Lenis smooth scrolling synced with GSAP ScrollTrigger; char-by-char hero reveal; pinned horizontal-scroll project showcase; infinite marquee; parallax scroll progress; magnetic buttons and a mix-blend custom cursor.
+- **WebGL black hole** — a dependency-free fragment shader in the hero (gravitational lensing, doppler-beamed accretion disk, photon ring) with visibility-based pausing, resolution caps and reduced-motion support.
 - **Live GitHub integration** — repo count, followers, stars and update dates fetched from the GitHub API (with graceful offline fallback).
 - **Theme system** — dark/light toggle with system-preference detection, no-flash inline init, persisted choice, and smooth token transitions.
 - **Localized** — full English (en) and Nepali (ने) dictionaries, auto-detected on first visit and persisted. Even the document title and `lang` attribute switch.

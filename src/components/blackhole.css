@@ -1,0 +1,27 @@
+.blackhole {
+  position: absolute;
+  top: clamp(330px, 44vh, 470px);
+  right: 0;
+  bottom: clamp(110px, 15vh, 160px);
+  width: min(46vw, 620px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.95;
+  /* soft radial mask so the visual melts into the page */
+  -webkit-mask-image: radial-gradient(ellipse at 62% 52%, black 52%, transparent 80%);
+  mask-image: radial-gradient(ellipse at 62% 52%, black 52%, transparent 80%);
+  /* subtle placeholder if WebGL is unavailable */
+  background: radial-gradient(ellipse at 62% 52%, rgba(255, 92, 53, 0.06), transparent 62%);
+}
+
+@media (max-width: 900px) {
+  .blackhole {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blackhole {
+    opacity: 0.85;
+  }
+}
