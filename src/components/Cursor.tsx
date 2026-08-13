@@ -43,8 +43,8 @@ export default function Cursor() {
     const onOver = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest(hoverable)
       if (target) {
-        scale.current = 2.2
-        gsap.to(ring, { scale: 2.2, duration: 0.3, ease: 'power3.out' })
+        scale.current = 1.55
+        gsap.to(ring, { scale: 1.55, duration: 0.3, ease: 'power3.out' })
         gsap.to(dot, { scale: 0.4, duration: 0.3, ease: 'power3.out' })
         ring.classList.add('cursor-ring--hover')
       } else {

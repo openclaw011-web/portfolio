@@ -111,6 +111,8 @@
 
 .hero-github {
   align-self: start;
+  justify-self: start;
+  white-space: nowrap;
 }
 
 .hero-cue {
@@ -153,10 +155,15 @@
 
 @media (min-width: 1080px) {
   .hero-meta-row {
-    grid-template-columns: repeat(4, auto);
-    justify-content: space-between;
+    grid-template-columns: repeat(4, auto) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: end;
   }
   .hero-stat--wide {
     min-width: 12ch;
+  }
+  .hero-github {
+    justify-self: end;
+    align-self: end;
   }
 }

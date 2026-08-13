@@ -27,6 +27,7 @@ body {
   margin: -18px 0 0 -18px;
   border: 1px solid rgba(255, 255, 255, 0.75);
   transition: border-color var(--dur-fast) ease;
+  transform-origin: 50% 50%;
 }
 
 .cursor-ring--hover {
