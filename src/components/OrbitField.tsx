@@ -31,7 +31,7 @@ export default function OrbitField() {
         speed: (0.12 + Math.random() * 0.5) * (Math.random() > 0.5 ? 1 : -1),
         phase: Math.random() * Math.PI * 2,
         drift: (Math.random() - 0.5) * 0.06,
-        size: accent ? 1.6 + Math.random() * 1.4 : 0.7 + Math.random() * 1.1,
+        size: accent ? 2.0 + Math.random() * 1.7 : 0.9 + Math.random() * 1.4,
         accent,
       }
     })
@@ -43,8 +43,8 @@ export default function OrbitField() {
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
-      canvas.width = Math.max(2, Math.round(Math.min(canvas.clientWidth, 720) * dpr))
-      canvas.height = Math.max(2, Math.round(Math.min(canvas.clientHeight, 560) * dpr))
+      canvas.width = Math.max(2, Math.round(Math.min(canvas.clientWidth, 820) * dpr))
+      canvas.height = Math.max(2, Math.round(Math.min(canvas.clientHeight, 620) * dpr))
     }
     resize()
 
@@ -55,7 +55,7 @@ export default function OrbitField() {
       const cx = W / 2
       const cy = H * 0.44
       const R = Math.min(W, H) * 0.5 // max orbit radius in px
-      const linkDist = R * 0.5
+      const linkDist = R * 0.55
 
       // node positions
       const pos: { x: number; y: number; accent: boolean }[] = []
