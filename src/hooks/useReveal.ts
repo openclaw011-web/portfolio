@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/motion'
+import { loaderReady } from '../lib/loader'
 
 interface Options {
   y?: number
@@ -30,24 +31,34 @@ export function useReveal<T extends HTMLElement>(opts: Options = {}) {
     if (!el) return
     if (prefersReducedMotion()) return
 
-    const ctx = gsap.context(() => {
-      const targets = el.children.length ? Array.from(el.children) : [el]
-      gsap.fromTo(
-        targets,
-        { y, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration,
-          delay,
-          stagger,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start, once },
-        }
-      )
-    }, el)
+    let ctx: gsap.Context | null = null
+    let alive = true
+    // defer trigger creation until the preloader is done: no mount-time
+    // layout/scroll work competes with the loader animation
+    loaderReady.then(() => {
+      if (!alive || !el) return
+      ctx = gsap.context(() => {
+        const targets = el.children.length ? Array.from(el.children) : [el]
+        gsap.fromTo(
+          targets,
+          { y, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration,
+            delay,
+            stagger,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start, once },
+          }
+        )
+      }, el)
+    })
 
-    return () => ctx.revert()
+    return () => {
+      alive = false
+      ctx?.revert()
+    }
   }, [y, duration, delay, stagger, start, once])
 
   return ref

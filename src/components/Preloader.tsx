@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/motion'
 import { stopScroll } from '../lib/lenis'
+import { markLoaderDone } from '../lib/loader'
 import { useI18n } from '../lib/i18n'
 import './preloader.css'
 
@@ -22,13 +23,30 @@ export default function Preloader() {
 
   useEffect(() => {
     if (prefersReducedMotion()) {
+      markLoaderDone()
       setGone(true)
       return
     }
     stopScroll(true)
+    document.documentElement.classList.add('is-loading')
 
-    const ctx = gsap.context(() => {
-      const counter = { v: 0 }
+    // Wait for the display font (capped) so the reveal never shows a swap.
+    // The name is masked until its reveal, so this keeps the loader perfectly
+    // smooth typographically, even on slow networks.
+    let ctx: gsap.Context | null = null
+    let alive = true
+    const ready = Promise.race([
+      Promise.all([
+        document.fonts.load('400 16px Fraunces'),
+        document.fonts.load('italic 300 16px Fraunces'),
+      ]).catch(() => {}),
+      new Promise((res) => setTimeout(res, 1400)),
+    ])
+
+    ready.then(() => {
+      if (!alive) return
+      ctx = gsap.context(() => {
+        const counter = { v: 0 }
 
       // counter — ramps visibly, settles on 100 right before the exit
       const counterTween = gsap.to(counter, {
@@ -48,6 +66,8 @@ export default function Preloader() {
         defaults: { ease: 'power4.out' },
         onComplete: () => {
           stopScroll(false)
+          document.documentElement.classList.remove('is-loading')
+          markLoaderDone()
           setGone(true)
         },
       })
@@ -85,12 +105,15 @@ export default function Preloader() {
       tl.to('.pre-edge', { yPercent: -100, duration: 0.85, ease: 'power4.inOut' }, 2.83)
       tl.to(rootRef.current, { yPercent: -100, duration: 0.85, ease: 'power4.inOut' }, 2.83)
 
-      void counterTween
-    }, rootRef)
+        void counterTween
+      }, rootRef)
+    })
 
     return () => {
-      ctx.revert()
+      alive = false
+      ctx?.revert()
       stopScroll(false)
+      document.documentElement.classList.remove('is-loading')
     }
   }, [])
 
@@ -98,8 +121,10 @@ export default function Preloader() {
   useEffect(() => {
     const t = setTimeout(() => {
       stopScroll(false)
+      document.documentElement.classList.remove('is-loading')
+      markLoaderDone()
       setGone(true)
-    }, 4500)
+    }, 5600)
     return () => clearTimeout(t)
   }, [])
 

@@ -171,7 +171,7 @@ for (const vp of [{ w: 1920, h: 1080 }, { w: 1440, h: 900 }, { w: 1366, h: 768 }
   const vctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h }, colorScheme: 'dark' })
   const vpage = await vctx.newPage()
   await vpage.goto(URL, { waitUntil: 'networkidle' })
-  await vpage.waitForTimeout(4500)
+  await vpage.waitForTimeout(6200)
   await vpage.evaluate(() => {
     const spacer = document.querySelector('.pin-spacer')
     window.scrollTo(0, spacer.getBoundingClientRect().top + window.scrollY + 80)

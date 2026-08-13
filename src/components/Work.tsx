@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '../lib/motion'
+import { loaderReady } from '../lib/loader'
 import { useI18n } from '../lib/i18n'
 import { fetchGitHubData, formatDate } from '../lib/github'
 import type { Project, RepoMeta } from '../lib/types'
@@ -23,15 +24,21 @@ export default function Work() {
     })
   }, [])
 
-  // pinned horizontal scroll on desktop; natural stack on mobile
+  // pinned horizontal scroll on desktop; natural stack on mobile.
+  // deferred until the preloader completes so the pin measurement never
+  // competes with the loader animation
   useEffect(() => {
     const section = sectionRef.current
     const track = trackRef.current
     const bar = barRef.current
     if (!section || !track) return
 
-    const mm = gsap.matchMedia()
-    mm.add('(min-width: 769px) and (prefers-reduced-motion: no-preference)', () => {
+    let mm: gsap.MatchMedia | null = null
+    let alive = true
+    loaderReady.then(() => {
+      if (!alive) return
+      mm = gsap.matchMedia()
+      mm.add('(min-width: 769px) and (prefers-reduced-motion: no-preference)', () => {
       const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth)
       const dist = () => getDistance()
 
@@ -67,12 +74,16 @@ export default function Work() {
         )
       }
 
-      return () => {
-        tween.scrollTrigger?.kill()
-      }
+        return () => {
+          tween.scrollTrigger?.kill()
+        }
+      })
     })
 
-    return () => mm.revert()
+    return () => {
+      alive = false
+      mm?.revert()
+    }
   }, [])
 
   const projects = t.work.projects

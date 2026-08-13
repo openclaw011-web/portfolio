@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion, splitWords } from '../lib/motion'
+import { loaderReady } from '../lib/loader'
 import './section-heading.css'
 
 interface Props {
@@ -16,25 +17,33 @@ export default function SectionHeading({ label, heading, sub, align = 'left' }: 
     const el = ref.current
     if (!el) return
     if (prefersReducedMotion()) return
-    const words = el.querySelectorAll('.sh-words')
-    const ctx = gsap.context(() => {
-      words.forEach((w) => {
-        const spans = splitWords(w as HTMLElement)
-        gsap.fromTo(
-          spans,
-          { yPercent: 120, opacity: 0 },
-          {
-            yPercent: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.045,
-            ease: 'power4.out',
-            scrollTrigger: { trigger: el, start: 'top 82%', once: true },
-          }
-        )
-      })
-    }, el)
-    return () => ctx.revert()
+    let ctx: gsap.Context | null = null
+    let alive = true
+    loaderReady.then(() => {
+      if (!alive || !el) return
+      const words = el.querySelectorAll('.sh-words')
+      ctx = gsap.context(() => {
+        words.forEach((w) => {
+          const spans = splitWords(w as HTMLElement)
+          gsap.fromTo(
+            spans,
+            { yPercent: 120, opacity: 0 },
+            {
+              yPercent: 0,
+              opacity: 1,
+              duration: 1,
+              stagger: 0.045,
+              ease: 'power4.out',
+              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
+            }
+          )
+        })
+      }, el)
+    })
+    return () => {
+      alive = false
+      ctx?.revert()
+    }
   }, [])
 
   return (

@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from './lib/theme'
 import { getLenis } from './lib/lenis'
+import { loaderReady } from './lib/loader'
 import Preloader from './components/Preloader'
 import Cursor from './components/Cursor'
 import Nav from './components/Nav'
@@ -18,9 +19,16 @@ import { useI18n } from './lib/i18n'
 export default function App() {
   const { theme, toggle } = useTheme()
   const { locale, setLocale } = useI18n()
+  const [showSections, setShowSections] = useState(false)
 
   useEffect(() => {
-    getLenis()
+    // Defer everything below the fold (and Lenis's own layout setup) until the
+    // preloader completes: the loader animation never competes with React's
+    // mount-time render + layout work, so it starts perfectly smooth.
+    loaderReady.then(() => {
+      getLenis()
+      setShowSections(true)
+    })
   }, [])
 
   return (
@@ -32,13 +40,17 @@ export default function App() {
       <Nav theme={theme} onToggleTheme={toggle} locale={locale} onSetLocale={setLocale} />
       <main id="main">
         <Hero />
-        <Marquee />
-        <About />
-        <Work />
-        <Capabilities />
-        <Journey />
-        <Contact />
-        <Footer />
+        {showSections && (
+          <>
+            <Marquee />
+            <About />
+            <Work />
+            <Capabilities />
+            <Journey />
+            <Contact />
+            <Footer />
+          </>
+        )}
       </main>
     </>
   )

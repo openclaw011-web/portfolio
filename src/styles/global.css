@@ -203,19 +203,21 @@ button {
   pointer-events: none;
   opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain-shift 8s steps(10) infinite;
+  animation: grain-drift 16s linear infinite;
 }
 [data-theme='light'] .grain {
   opacity: 0.07;
 }
 
-@keyframes grain-shift {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -8%); }
-  30% { transform: translate(3%, -12%); }
-  50% { transform: translate(-8%, 4%); }
-  70% { transform: translate(6%, 8%); }
-  90% { transform: translate(-3%, 5%); }
+/* smooth compositor-friendly drift (transform-only, no per-step repaints);
+   paused while the preloader is up because it is not visible underneath */
+@keyframes grain-drift {
+  from { transform: translate3d(-4%, -6%, 0); }
+  to { transform: translate3d(4%, 6%, 0); }
+}
+
+.is-loading .grain {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
