@@ -21,7 +21,7 @@ export default function OrbitField() {
     const ACCENT = '255, 92, 53'
 
     // orbital particles (elliptical paths so the field fills the wide box)
-    const N = 56
+    const N = 48
     const parts = Array.from({ length: N }, (_, i) => {
       const accent = i % 9 === 0
       return {
@@ -40,12 +40,15 @@ export default function OrbitField() {
     let running = true
     let last = performance.now()
     let time = 0
+    let glowGrad: CanvasGradient | null = null
+    let fadeGrad: CanvasGradient | null = null
 
     const resize = () => {
-      // large background canvas: cap the resolution and dpr for smooth 60fps
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.25)
-      canvas.width = Math.max(2, Math.round(Math.min(canvas.clientWidth, 1280) * dpr))
-      canvas.height = Math.max(2, Math.round(Math.min(canvas.clientHeight, 760) * dpr))
+      // large background canvas: render at dpr 1 — it's a soft ambient visual,
+      // and this keeps the per-frame fill cost low enough for smooth 60fps
+      const dpr = 1
+      canvas.width = Math.max(2, Math.round(Math.min(canvas.clientWidth, 1420) * dpr))
+      canvas.height = Math.max(2, Math.round(Math.min(canvas.clientHeight, 800) * dpr))
     }
     resize()
 
@@ -53,9 +56,9 @@ export default function OrbitField() {
       const W = canvas.width
       const H = canvas.height
       ctx.clearRect(0, 0, W, H)
-      const cx = W * 0.62
+      const cx = W * 0.66
       const cy = H * 0.5
-      const R = Math.min(W, H) * 0.54 // max orbit radius in px
+      const R = Math.min(W, H) * 0.58 // max orbit radius in px
       const linkDist = R * 0.5
 
       // node positions
@@ -97,21 +100,38 @@ export default function OrbitField() {
         ctx.fill()
       }
 
-      // core: vermilion glow + pulse
+      // core: vermilion glow + pulse (gradient pre-created once — per-frame
+      // gradient allocation is expensive; pulse via globalAlpha instead)
+      const coreR = R * 0.09
+      if (!glowGrad) {
+        glowGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR * 3)
+        glowGrad.addColorStop(0, 'rgba(' + ACCENT + ',0.5)')
+        glowGrad.addColorStop(0.4, 'rgba(' + ACCENT + ',0.14)')
+        glowGrad.addColorStop(1, 'rgba(' + ACCENT + ',0)')
+      }
       const pulse = 1 + 0.08 * Math.sin(time * 1.6)
-      const coreR = R * 0.09 * pulse
-      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR * 3)
-      grad.addColorStop(0, 'rgba(' + ACCENT + ',0.5)')
-      grad.addColorStop(0.4, 'rgba(' + ACCENT + ',0.14)')
-      grad.addColorStop(1, 'rgba(' + ACCENT + ',0)')
-      ctx.fillStyle = grad
+      ctx.globalAlpha = pulse
+      ctx.fillStyle = glowGrad
       ctx.beginPath()
       ctx.arc(cx, cy, coreR * 3, 0, Math.PI * 2)
       ctx.fill()
+      ctx.globalAlpha = 1
       ctx.fillStyle = 'rgba(' + ACCENT + ',0.95)'
       ctx.beginPath()
-      ctx.arc(cx, cy, coreR, 0, Math.PI * 2)
+      ctx.arc(cx, cy, coreR * pulse, 0, Math.PI * 2)
       ctx.fill()
+
+      // edge fade baked into the pixels (cheaper than a CSS mask)
+      if (!fadeGrad) {
+        const outer = Math.sqrt(Math.max(cx, W - cx) ** 2 + Math.max(cy, H - cy) ** 2)
+        fadeGrad = ctx.createRadialGradient(cx, cy, R * 0.62, cx, cy, outer)
+        fadeGrad.addColorStop(0, 'rgba(0,0,0,0)')
+        fadeGrad.addColorStop(1, 'rgba(0,0,0,1)')
+      }
+      ctx.globalCompositeOperation = 'destination-out'
+      ctx.fillStyle = fadeGrad
+      ctx.fillRect(0, 0, W, H)
+      ctx.globalCompositeOperation = 'source-over'
     }
 
     const loop = (t: number) => {
