@@ -12,14 +12,16 @@
 
 .hero-name {
   font-size: var(--text-hero);
-  margin-block: var(--space-4) var(--space-3);
-  line-height: 0.92;
+  margin-block: var(--space-4) var(--space-4);
+  line-height: 1.02;
 }
 
 .hero-name-line {
   display: block;
   overflow: hidden;
-  padding-block: 0.04em;
+  /* generous padding keeps Fraunces descenders (g, y, p) inside the
+     reveal mask instead of clipping them */
+  padding-block: 0.16em;
 }
 
 .hero-name-line--italic {
